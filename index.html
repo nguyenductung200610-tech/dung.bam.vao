@@ -3,6 +3,7 @@
 <head>
 <title>Basic Snake HTML Game</title>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 html, body {
   height: 100%;
@@ -46,8 +47,8 @@ function getRandomInt(min, max) {
 function loop() {
   requestAnimationFrame(loop);
   
-  // ĐÃ CHỈNH: Tăng lên 16 để tốc độ rắn siêu chậm, siêu dễ chơi
-  if (++count < 16) {
+  // ĐÃ CHỈNH: Đặt mức trì hoãn là 8 để tăng tốc độ lên một chút nữa, mang lại trải nghiệm mượt mà hơn
+  if (++count < 8) {
     return;
   }
   count = 0;
@@ -81,12 +82,14 @@ function loop() {
   snake.cells.forEach(function(cell, index) {
     context.fillRect(cell.x, cell.y, grid-1, grid-1);
 
+    // Ăn táo
     if (cell.x === apple.x && cell.y === apple.y) {
       snake.maxCells++;
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
     }
 
+    // Tự cắn đuôi (Reset game)
     for (var i = index + 1; i < snake.cells.length; i++) {
       if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
         snake.x = 160;
@@ -102,8 +105,8 @@ function loop() {
   });
 }
 
-// Chặn cuộn trang khi bấm phím mũi tên và dùng e.key hiện đại
 document.addEventListener('keydown', function(e) {
+  // Ngăn màn hình bị cuộn khi nhấn các phím mũi tên
   if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.key) > -1) {
     e.preventDefault();
   }
@@ -123,6 +126,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// Bắt đầu game
 requestAnimationFrame(loop);
 </script>
 </body>
