@@ -46,8 +46,8 @@ function getRandomInt(min, max) {
 function loop() {
   requestAnimationFrame(loop);
   
-  // ĐÃ CHỈNH: Tăng từ 4 lên 8 để rắn di chuyển chậm lại một nửa
-  if (++count < 8) {
+  // ĐÃ CHỈNH: Tăng lên 16 để tốc độ rắn siêu chậm, siêu dễ chơi
+  if (++count < 16) {
     return;
   }
   count = 0;
@@ -102,9 +102,8 @@ function loop() {
   });
 }
 
-// ĐÃ CẬP NHẬT: Thay đổi code bắt phím hiện đại hơn và chặn cuộn trang
+// Chặn cuộn trang khi bấm phím mũi tên và dùng e.key hiện đại
 document.addEventListener('keydown', function(e) {
-  // Ngăn màn hình trình duyệt bị cuộn lên xuống khi bấm nút mũi tên
   if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.key) > -1) {
     e.preventDefault();
   }
