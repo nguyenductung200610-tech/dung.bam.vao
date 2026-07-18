@@ -46,7 +46,7 @@ function getRandomInt(min, max) {
 function loop() {
   requestAnimationFrame(loop);
   
-  // Đã chỉnh từ 4 lên 8 để tốc độ rắn chạy chậm lại một nửa, dễ điều khiển hơn
+  // ĐÃ CHỈNH: Tăng từ 4 lên 8 để rắn di chuyển chậm lại một nửa
   if (++count < 8) {
     return;
   }
@@ -102,8 +102,9 @@ function loop() {
   });
 }
 
-// Đã cập nhật từ e.which sang e.key hiện đại và chặn cuộn trang khi bấm phím mũi tên
+// ĐÃ CẬP NHẬT: Thay đổi code bắt phím hiện đại hơn và chặn cuộn trang
 document.addEventListener('keydown', function(e) {
+  // Ngăn màn hình trình duyệt bị cuộn lên xuống khi bấm nút mũi tên
   if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.key) > -1) {
     e.preventDefault();
   }
